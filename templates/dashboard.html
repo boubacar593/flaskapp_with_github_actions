@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HR Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <h2>HR Panel</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Employees</li>
+            <li>Departments</li>
+            <li>Recruitment</li>
+            <li>Reports</li>
+        </ul>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <h1>Human Resources Dashboard</h1>
+            <span class="subtitle">Company overview</span>
+        </header>
+
+        <section class="cards">
+
+            <div class="card">
+                <h3>Total Employees</h3>
+                <p>{{ stats.employees }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Departments</h3>
+                <p>{{ stats.departments }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Open Positions</h3>
+                <p>{{ stats.open_positions }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Turnover (%)</h3>
+                <p>{{ stats.turnover }}</p>
+            </div>
+
+        </section>
+
+        <section class="table-section">
+            <h2>Employees list</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for emp in employees %}
+                    <tr>
+                        <td>{{ emp.name }}</td>
+                        <td>{{ emp.department }}</td>
+                        <td>{{ emp.role }}</td>
+                        <td>
+                            <span class="status {{ emp.status | lower | replace(' ', '-') }}">
+                                {{ emp.status }}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
