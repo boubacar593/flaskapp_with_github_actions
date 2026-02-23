@@ -56,4 +56,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/rh-dashboard:latest
-            
+    
